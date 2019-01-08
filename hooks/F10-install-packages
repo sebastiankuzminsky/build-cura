@@ -23,6 +23,7 @@ RUNTIME_DEPS=(
     python3-numpy
     python3-pyqt5
     python3-pyqt5.qtquick
+    python3-pyqt5.qtsvg
     python3-serial
     python3-scipy
     python3-shapely
