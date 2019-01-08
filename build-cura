@@ -1,0 +1,56 @@
+#!/bin/bash
+set -e
+set -x
+
+PACKAGES="fdm_materials libCharon libSavitar libArcus Uranium CuraEngine Cura"
+
+NPROC=$(nproc --all)
+
+
+declare -a CONFIGS
+CONFIGS=(
+    $HOME/.config/cura
+    $HOME/.cache/cura
+    $HOME/.local/share/cura
+
+    /usr/local/include/Arcus
+    /usr/local/include/Savitar
+
+    /usr/local/lib/cmake/Arcus
+    /usr/local/lib/cmake/Savitar
+    /usr/local/lib/cura
+    /usr/local/lib/libArcus*
+    /usr/local/lib/libSavitar*
+    /usr/local/lib/python3/dist-packages/*
+    /usr/local/lib/systemd
+    /usr/local/lib/uranium
+
+    /usr/local/share/applications
+    /usr/local/share/cmake*
+    /usr/local/share/cura
+    /usr/local/share/dbus-1
+    /usr/local/share/icons
+    /usr/local/share/metainfo
+    /usr/local/share/mime
+    /usr/local/share/uranium
+)
+
+sudo rm -rf "${CONFIGS[*]}"
+
+for P in ${PACKAGES}; do
+    echo "building: ${P} ${@}"
+    pushd "${P}"
+    git clean -fdx .
+    rm -rf build
+    git checkout .
+    for V in "${@}"; do
+        git checkout "${V}" && break
+    done
+    mkdir build
+    cd build
+    cmake .. > out.cmake 2>&1 
+    make -j "${NPROC}" > out.build 2>&1
+    sudo make install > out.install 2>&1
+    popd
+done
+
