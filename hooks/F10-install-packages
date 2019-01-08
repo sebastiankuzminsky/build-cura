@@ -23,8 +23,10 @@ RUNTIME_DEPS=(
     python3-numpy
     python3-pyqt5
     python3-pyqt5.qtquick
+    python3-serial
     python3-scipy
     python3-shapely
+    python3-zeroconf
     libgl1-mesa-dri
     qml-module-qtquick-controls
     qml-module-qtquick-controls2
