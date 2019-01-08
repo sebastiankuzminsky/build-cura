@@ -2,7 +2,7 @@
 set -e
 set -x
 
-PACKAGES="fdm_materials libCharon libSavitar libArcus Uranium CuraEngine Cura"
+PACKAGES="fdm_materials libCharon libSavitar libArcus Uranium CuraEngine cura-binary-data Cura"
 
 NPROC=$(nproc --all)
 

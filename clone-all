@@ -2,6 +2,7 @@
 
 REPOS=(
     https://github.com/Ultimaker/Cura.git
+    https://github.com/Ultimaker/cura-binary-data.git
     https://github.com/Ultimaker/CuraEngine.git
     https://github.com/Ultimaker/Uranium.git
     https://github.com/Ultimaker/fdm_materials.git
