@@ -3,10 +3,9 @@
 export XAUTH_FILE=$(mktemp --tmpdir .Xauthority.pbuilder.XXXXXXXXX)
 xauth extract ${XAUTH_FILE} ${DISPLAY}
 
-export XAUTHORITY=/root/.Xauthority
-
 sudo pbuilder login \
     --basetgz pbuilder-stretch-amd64.tgz \
+    --configfile $PWD/pbuilderrc \
     --hookdir $PWD/pbuilder-hooks \
     --inputfile ${XAUTH_FILE} \
     --bindmounts "$PWD /tmp/.X11-unix"
