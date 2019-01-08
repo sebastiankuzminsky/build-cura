@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo pbuilder update --basetgz pbuilder-stretch-amd64.tgz
