@@ -1,0 +1,24 @@
+#!/bin/bash
+
+REPOS=(
+    https://github.com/Ultimaker/Cura.git
+    https://github.com/Ultimaker/CuraEngine.git
+    https://github.com/Ultimaker/Uranium.git
+    https://github.com/Ultimaker/fdm_materials.git
+    https://github.com/Ultimaker/libArcus.git
+    https://github.com/Ultimaker/libCharon.git
+    https://github.com/Ultimaker/libSavitar.git
+)
+
+for R in ${REPOS[*]}; do
+    DIR=$(basename ${R} .git)
+    if [ -d ${DIR} ]; then
+        echo "fetching existing clone of ${DIR}"
+        pushd ${DIR}
+        git fetch --all
+        popd
+    else
+        echo "cloning ${DIR}"
+        git clone ${R}
+    fi
+done
