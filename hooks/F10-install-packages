@@ -25,6 +25,11 @@ RUNTIME_DEPS=(
     python3-pyqt5.qtquick
     python3-scipy
     python3-shapely
+    libgl1-mesa-dri
+    qml-module-qtquick-controls
+    qml-module-qtquick-controls2
+    qml-module-qtquick-dialogs
+    qml-module-qtquick-templates2
 )
 
 USER_TOOLS=(
