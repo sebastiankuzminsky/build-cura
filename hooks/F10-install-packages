@@ -21,6 +21,10 @@ BUILD_DEPS=(
 
 RUNTIME_DEPS=(
     python3-numpy
+    python3-pyqt5
+    python3-pyqt5.qtquick
+    python3-scipy
+    python3-shapely
 )
 
 USER_TOOLS=(
