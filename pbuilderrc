@@ -1,2 +1,6 @@
 export XAUTHORITY=/root/.Xauthority
 export PYTHONPATH=/usr/local/lib/python3/dist-packages
+
+if [[ "${TERM}" =~ screen.* ]]; then
+    export TERM=screen
+fi
