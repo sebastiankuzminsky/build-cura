@@ -8,3 +8,6 @@ libSavitar/
 Cura-packaging/
 cura-binary-data/
 pbuilder-*-amd64.tgz
+*.deb
+*.changes
+*.buildinfo
