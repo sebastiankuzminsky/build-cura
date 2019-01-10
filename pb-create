@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo pbuilder create --basetgz pbuilder-stretch-amd64.tgz --distribution stretch --components main contrib non-free
+sudo pbuilder create --basetgz pbuilder-buster-amd64.tgz --distribution buster --components main contrib non-free

@@ -4,7 +4,7 @@ export XAUTH_FILE=$(mktemp --tmpdir .Xauthority.pbuilder.XXXXXXXXX)
 xauth extract ${XAUTH_FILE} ${DISPLAY}
 
 sudo pbuilder login \
-    --basetgz pbuilder-stretch-amd64.tgz \
+    --basetgz pbuilder-buster-amd64.tgz \
     --configfile $PWD/pbuilderrc \
     --hookdir $PWD/hooks \
     --inputfile ${XAUTH_FILE} \
