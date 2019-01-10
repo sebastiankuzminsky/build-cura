@@ -5,4 +5,5 @@ fdm_materials/
 libArcus/
 libCharon/
 libSavitar/
-pbuilder-stretch-amd64.tgz
+Cura-packaging/
+pbuilder-*-amd64.tgz
