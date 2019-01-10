@@ -1,3 +1,4 @@
+# repos
 Cura/
 CuraEngine/
 Uranium/
@@ -7,7 +8,10 @@ libCharon/
 libSavitar/
 Cura-packaging/
 cura-binary-data/
+dm-gcode-generator/
+
 pbuilder-*-amd64.tgz
+
 *.deb
 *.changes
 *.buildinfo

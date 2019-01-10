@@ -10,6 +10,7 @@ REPOS=(
     https://github.com/Ultimaker/libCharon.git
     https://github.com/Ultimaker/libSavitar.git
     https://github.com/sebastiankuzminsky/Cura-packaging
+    git@github.com:DesktopMetal/dm-gcode-generator.git
 )
 
 for R in ${REPOS[*]}; do
