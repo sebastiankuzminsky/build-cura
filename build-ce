@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# This script builds CuraEngine or dm-gcode-generator and runs the tests.
+#
+
+set -e
+
+if [[ $(basename $PWD) != "build" ]]; then
+    echo "not in build directory!"
+    exit 1
+fi
+
+# build
+cmake -DENABLE_ARCUS=ON -DBUILD_TESTS:BOOL=ON ..
+make -j$(nproc --all)
+
+# test
+cp -f \
+    ../tests/resources/dm_beta.def.json \
+    ../tests/resources/dm_beta_extruder_0.def.json \
+    ../tests/resources/dm_beta_extruder_1.def.json \
+    ../tests/resources/dm_pusher.def.json \
+    ../tests/resources/dm_pusher_extruder_0.def.json \
+    ../tests/resources/dm_pusher_extruder_1.def.json \
+    ../tests/resources/fdmextruder_e3d.def.json \
+    ../tests/resources/fdmprinter_e3d.def.json \
+    ../tests/resources/testModel.stl \
+    .
+
+./CuraTests
+
