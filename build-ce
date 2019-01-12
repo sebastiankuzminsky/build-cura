@@ -30,3 +30,6 @@ cp -f \
 
 ./CuraTests
 
+
+# Jenkins does this on Windows but not Linux.
+python3 ../dm_tests/cura_slice_checker.py
