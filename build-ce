@@ -11,24 +11,36 @@ if [[ $(basename $PWD) != "build" ]]; then
     exit 1
 fi
 
+
+#
 # build
+#
+
 cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_ARCUS=ON -DBUILD_TESTS:BOOL=ON ..
 make -j$(nproc --all)
 
-# test
-cp -f \
-    ../tests/resources/dm_beta.def.json \
-    ../tests/resources/dm_beta_extruder_0.def.json \
-    ../tests/resources/dm_beta_extruder_1.def.json \
-    ../tests/resources/dm_pusher.def.json \
-    ../tests/resources/dm_pusher_extruder_0.def.json \
-    ../tests/resources/dm_pusher_extruder_1.def.json \
-    ../tests/resources/fdmextruder_e3d.def.json \
-    ../tests/resources/fdmprinter_e3d.def.json \
-    ../tests/resources/testModel.stl \
-    .
 
-./CuraTests
+#
+# tests
+#
+
+# Jenkins does this on Linux because CuraTests needs it, but not on
+# Windows.
+if [[ -d ../tests/resources ]]; then
+    cp -f \
+        ../tests/resources/dm_beta.def.json \
+        ../tests/resources/dm_beta_extruder_0.def.json \
+        ../tests/resources/dm_beta_extruder_1.def.json \
+        ../tests/resources/dm_pusher.def.json \
+        ../tests/resources/dm_pusher_extruder_0.def.json \
+        ../tests/resources/dm_pusher_extruder_1.def.json \
+        ../tests/resources/fdmextruder_e3d.def.json \
+        ../tests/resources/fdmprinter_e3d.def.json \
+        ../tests/resources/testModel.stl \
+        .
+fi
+
+make test
 
 
 # Jenkins does this on Windows but not Linux.
