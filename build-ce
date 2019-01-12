@@ -4,6 +4,7 @@
 #
 
 set -e
+set -x
 
 if [[ $(basename $PWD) != "build" ]]; then
     echo "not in build directory!"
@@ -11,7 +12,7 @@ if [[ $(basename $PWD) != "build" ]]; then
 fi
 
 # build
-cmake -DENABLE_ARCUS=ON -DBUILD_TESTS:BOOL=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_ARCUS=ON -DBUILD_TESTS:BOOL=ON ..
 make -j$(nproc --all)
 
 # test
