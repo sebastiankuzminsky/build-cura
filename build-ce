@@ -43,5 +43,5 @@ fi
 make test
 
 
-# Jenkins does this on Windows but not Linux.
+# Jenkins does this on Windows and Linux.
 python3 ../dm_tests/cura_slice_checker.py
