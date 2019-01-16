@@ -1,17 +1,26 @@
+From: Sebastian Kuzminsky <seb@DesktopMetal.com>
+Date: Wed, 16 Jan 2019 16:39:34 -0700
+Subject: install dm-gcode-generator resources
+
+This overwrites the resources from Cura 3.2, but it can't be helped.
+---
+ CMakeLists.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 190012f4..2cf442d7 100644
+index 7d1c2b6..ef15025 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -231,7 +231,7 @@ endif()
- 
+@@ -236,7 +236,7 @@ endif()
  add_custom_command(TARGET CuraEngine POST_BUILD
+                    COMMENT "copying resources to build dir"
                     COMMAND ${CMAKE_COMMAND} -E copy_directory
 -                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:CuraEngine>)
 +                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:CuraEngine>/resources)
  
  set(CURA_ENGINE_VERSION_NUMBER "3.2.1" CACHE STRING "Version number of CuraEngine")
  set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER=\"${CURA_ENGINE_VERSION_NUMBER}\"")
-@@ -239,4 +239,5 @@ set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER
+@@ -244,4 +244,5 @@ set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER
  # Installing CuraEngine.
  include(GNUInstallDirs)
  install(TARGETS CuraEngine DESTINATION ${CMAKE_INSTALL_BINDIR})
