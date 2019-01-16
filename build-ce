@@ -24,24 +24,5 @@ make -j$(nproc --all)
 # tests
 #
 
-# Jenkins does this on Linux because CuraTests needs it, but not on
-# Windows.
-if [[ -d ../tests/resources ]]; then
-    cp -f \
-        ../tests/resources/dm_beta.def.json \
-        ../tests/resources/dm_beta_extruder_0.def.json \
-        ../tests/resources/dm_beta_extruder_1.def.json \
-        ../tests/resources/dm_pusher.def.json \
-        ../tests/resources/dm_pusher_extruder_0.def.json \
-        ../tests/resources/dm_pusher_extruder_1.def.json \
-        ../tests/resources/fdmextruder_e3d.def.json \
-        ../tests/resources/fdmprinter_e3d.def.json \
-        ../tests/resources/testModel.stl \
-        .
-fi
-
-make test
-
-
-# Jenkins does this on Windows and Linux.
-python3 ../dm_tests/cura_slice_checker.py
+cd ..
+./tools/run-tests.sh
