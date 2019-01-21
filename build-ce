@@ -16,8 +16,8 @@ fi
 # build
 #
 
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_ARCUS=ON -DBUILD_TESTS:BOOL=ON ..
-make -j$(nproc --all)
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_ARCUS=On -DBUILD_TESTS=On -DCURA_ENGINE_VERSION="$(git rev-parse --abbrev-ref HEAD)_$(git describe --always --dirty)" ..
+make VERBOSE=1 -j$(nproc --all)
 
 
 #
