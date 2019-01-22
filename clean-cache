@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm -rf $HOME/.cache/cura $HOME/.config/cura $HOME/.local/share/cura

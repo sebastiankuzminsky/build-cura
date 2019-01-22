@@ -1,0 +1,14 @@
+#!/bin/bash
+#set -x
+
+export CURA_ENGINE_SEARCH_PATH=$PWD/definitions:$PWD/extruders:$PWD/printer_presets
+
+if [[ $(realpath /usr/bin/CuraEngine) != $(realpath ./CuraEngine) ]]; then
+    echo "wrong /usr/bin/CuraEngine!"
+    echo "it currently points to $(realpath /usr/bin/CuraEngine)"
+    echo "run this:"
+    echo "sudo rm -f /usr/bin/CuraEngine; sudo ln -s $PWD/CuraEngine /usr/bin"
+    exit 1
+fi
+
+cura
