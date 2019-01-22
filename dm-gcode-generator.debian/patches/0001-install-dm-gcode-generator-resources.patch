@@ -1,5 +1,5 @@
 From: Sebastian Kuzminsky <seb@DesktopMetal.com>
-Date: Wed, 16 Jan 2019 16:39:34 -0700
+Date: Tue, 22 Jan 2019 12:53:51 -0700
 Subject: install dm-gcode-generator resources
 
 This overwrites the resources from Cura 3.2, but it can't be helped.
@@ -8,10 +8,10 @@ This overwrites the resources from Cura 3.2, but it can't be helped.
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 7d1c2b6..ef15025 100644
+index 49c5148..34229c5 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -236,7 +236,7 @@ endif()
+@@ -234,7 +234,7 @@ endif()
  add_custom_command(TARGET CuraEngine POST_BUILD
                     COMMENT "copying resources to build dir"
                     COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -19,8 +19,8 @@ index 7d1c2b6..ef15025 100644
 +                       ${CMAKE_SOURCE_DIR}/resources $<TARGET_FILE_DIR:CuraEngine>/resources)
  
  set(CURA_ENGINE_VERSION_NUMBER "3.2.1" CACHE STRING "Version number of CuraEngine")
- set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER=\"${CURA_ENGINE_VERSION_NUMBER}\"")
-@@ -244,4 +244,5 @@ set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER
+ set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER=\"${CURA_ENGINE_VERSION_NUMBER}\";VERSION=\"${CURA_ENGINE_VERSION}\"")
+@@ -242,4 +242,5 @@ set_target_properties(_CuraEngine PROPERTIES COMPILE_DEFINITIONS "VERSION_NUMBER
  # Installing CuraEngine.
  include(GNUInstallDirs)
  install(TARGETS CuraEngine DESTINATION ${CMAKE_INSTALL_BINDIR})
