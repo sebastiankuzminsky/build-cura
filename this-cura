@@ -3,6 +3,11 @@
 
 export CURA_ENGINE_SEARCH_PATH=$PWD/definitions:$PWD/extruders:$PWD/printer_presets
 
+if [[ ! -x ./CuraEngine ]]; then
+    echo "what cura?"
+    exit 1
+fi
+
 if [[ $(realpath /usr/bin/CuraEngine) != $(realpath ./CuraEngine) ]]; then
     echo "wrong /usr/bin/CuraEngine!"
     echo "it currently points to $(realpath /usr/bin/CuraEngine)"
