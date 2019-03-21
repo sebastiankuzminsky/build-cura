@@ -13,6 +13,13 @@ fi
 
 
 #
+# build the resources
+#
+
+../tools/gus_bot.py
+
+
+#
 # build
 #
 
