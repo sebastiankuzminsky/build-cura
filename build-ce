@@ -23,7 +23,10 @@ fi
 # build
 #
 
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_ARCUS=On -DBUILD_TESTS=On -DCURA_ENGINE_VERSION="$(git rev-parse --abbrev-ref HEAD)_$(git describe --always --dirty)" ..
+if [[ ! -f Makefile ]]; then
+    cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_ARCUS=On -DBUILD_TESTS=On -DCURA_ENGINE_VERSION="$(git rev-parse --abbrev-ref HEAD)_$(git describe --always --dirty)" ..
+fi
+
 make VERBOSE=1 -j$(nproc --all)
 
 
