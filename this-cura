@@ -16,6 +16,7 @@ if [[ $(realpath /usr/bin/CuraEngine) != $(realpath ./CuraEngine) ]]; then
     exit 1
 fi
 
+echo "copying resources to /usr/share/cura/resources..."
 for R in definitions extruders materials qml quality; do
     #printer_presets/
     #gcode_templates/
