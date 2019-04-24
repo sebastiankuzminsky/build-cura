@@ -15,16 +15,27 @@ function check_for_commits {
 }
 
 
+git fetch origin
+echo
+
 BRANCHES=(
-    1.9
-    1.10
     integration
     resources-printfarm-3.2
     resources-develop-3.2
 )
 
-git fetch origin
-echo
+declare -a RELEASE_BRANCHES
+readarray -t RELEASE_BRANCHES < <(git branch -a | egrep ' remotes/origin/[0-9]+\.[0-9]+$' | cut -d / -f3 | sort -V)
+
+for I in $(seq 0 $((${#RELEASE_BRANCHES[*]} - 2))); do
+    OLD="${RELEASE_BRANCHES[$I]}"
+    NEW="${RELEASE_BRANCHES[$(($I+1))]}"
+    check_for_commits "${OLD}" "${NEW}"
+done
+
+OLD="${RELEASE_BRANCHES[-1]}"
+NEW="${BRANCHES[0]}"
+check_for_commits "${OLD}" "${NEW}"
 
 for I in $(seq 0 $((${#BRANCHES[*]} - 2))); do
     OLD="${BRANCHES[$I]}"
