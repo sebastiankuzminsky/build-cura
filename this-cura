@@ -18,8 +18,6 @@ fi
 
 echo "copying resources to /usr/share/cura/resources..."
 for R in definitions extruders materials qml quality; do
-    #printer_presets/
-    #gcode_templates/
     sudo /bin/cp -af $R /usr/share/cura/resources/
 done
 
