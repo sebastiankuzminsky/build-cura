@@ -15,6 +15,9 @@ function check_for_commits {
 }
 
 
+OLDEST_INTERESTING_BRANCH=1.9
+
+
 #git fetch origin
 echo
 
@@ -30,7 +33,9 @@ readarray -t RELEASE_BRANCHES < <(git branch -a | egrep ' remotes/origin/[0-9]+\
 for I in $(seq 0 $((${#RELEASE_BRANCHES[*]} - 2))); do
     OLD="${RELEASE_BRANCHES[$I]}"
     NEW="${RELEASE_BRANCHES[$(($I+1))]}"
-    check_for_commits "${OLD}" "${NEW}"
+    if dpkg --compare-versions ${OLD} ge ${OLDEST_INTERESTING_BRANCH}; then
+        check_for_commits "${OLD}" "${NEW}"
+    fi
 done
 
 OLD="${RELEASE_BRANCHES[-1]}"
