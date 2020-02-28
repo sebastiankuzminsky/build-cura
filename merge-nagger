@@ -5,9 +5,9 @@ function check_for_commits {
     NEW="$2"
     NUM_COMMITS=$(git log --oneline --no-merges "origin/${OLD}" "^origin/${NEW}" | wc -l)
     if [[ "${NUM_COMMITS}" -eq 0 ]]; then
-        echo "${OLD}: no new commits that need to be merged to ${NEW}"
+        echo "${OLD} ($(git show --pretty=%h origin/${OLD})): no new commits that need to be merged to ${NEW}"
     else
-        echo "${OLD}: ${NUM_COMMITS} new commits that need to be merged to ${NEW}"
+        echo "${OLD} ($(git show --pretty=%h origin/${OLD})): ${NUM_COMMITS} new commits that need to be merged to ${NEW}"
         git --no-pager log --pretty=format:'    %h %s' --no-merges "origin/${OLD}" "^origin/${NEW}"
         echo
     fi
