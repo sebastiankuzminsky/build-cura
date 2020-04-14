@@ -9,6 +9,6 @@ for PACKAGE in fdm_materials libCharon libSavitar libArcus Uranium CuraEngine cu
     checkout 3.2 (some repos don't have a 3.2 branch, use a tag instead of a newer branch if needed)
     ln -s ../Cura-package/${PACKAGE} debian
     dpkg-checkbuilddeps
-    dpkg-buildpackage -uc -s
+    dpkg-buildpackage -uc -b
     install debs as you go
 ```
