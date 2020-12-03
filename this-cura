@@ -1,11 +1,17 @@
 #!/bin/bash
 #set -x
 
-export CURA_ENGINE_SEARCH_PATH=$PWD/definitions:$PWD/extruders
-
 if [[ ! -x ./CuraEngine ]]; then
     echo "what cura?"
     exit 1
+fi
+
+if [[ -d ${PWD}/definitions ]]; then
+    export CURA_ENGINE_SEARCH_PATH=${PWD}/definitions:${CURA_ENGINE_SEARCH_PATH}
+fi
+
+if [[ -d ${PWD}/extruders ]]; then
+    export CURA_ENGINE_SEARCH_PATH=${PWD}/extruders:${CURA_ENGINE_SEARCH_PATH}
 fi
 
 if [[ $(realpath /usr/bin/CuraEngine) != $(realpath ./CuraEngine) ]]; then
@@ -18,7 +24,9 @@ fi
 
 echo "copying resources to /usr/share/cura/resources..."
 for R in definitions extruders materials qml quality; do
-    sudo /bin/cp -af $R /usr/share/cura/resources/
+    if [[ -d ${R} ]]; then
+        sudo /bin/cp -af $R /usr/share/cura/resources/
+    fi
 done
 
 cura
