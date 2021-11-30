@@ -1,0 +1,27 @@
+#!/bin/bash
+#set -x
+set -e
+
+echo "installing dm-mhd-curaengine's CuraEngine and resources..."
+
+TOPLEVEL=$(git rev-parse --show-toplevel)
+
+CURAENGINE=$(realpath "${TOPLEVEL}/build/CuraEngine")
+if [[ $(realpath /usr/bin/CuraEngine) != "${CURAENGINE}" ]]; then
+    echo "wrong /usr/bin/CuraEngine!"
+    echo "it currently points to $(realpath /usr/bin/CuraEngine)"
+    echo "run this:"
+    echo "sudo rm -f /usr/bin/CuraEngine; sudo ln -s ${CURAENGINE} /usr/bin"
+    exit 1
+fi
+
+DEST="/usr/share/cura/resources/"
+RESOURCES=$(realpath "${TOPLEVEL}/resources")
+echo "copying resources to ${DEST}"
+sudo /bin/cp -af "${RESOURCES}/definitions/" "${DEST}"
+sudo /bin/cp -af "${RESOURCES}/extruders/" "${DEST}"
+sudo /bin/cp -af "${RESOURCES}/materials/" "${DEST}"
+sudo /bin/cp -af "${RESOURCES}/quality/" "${DEST}"
+sudo /bin/cp -af "${RESOURCES}/variants/" "${DEST}"
+
+cura

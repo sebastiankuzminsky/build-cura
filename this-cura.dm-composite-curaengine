@@ -1,0 +1,18 @@
+#!/bin/bash
+set -x
+set -e
+
+echo "installing dm-composite-curaengine's CuraEngine..."
+
+TOPLEVEL=$(git rev-parse --show-toplevel)
+
+CURAENGINE=$(realpath "${TOPLEVEL}/build/CuraEngine")
+if [[ $(realpath /usr/bin/CuraEngine) != "${CURAENGINE}" ]]; then
+    echo "wrong /usr/bin/CuraEngine!"
+    echo "it currently points to $(realpath /usr/bin/CuraEngine)"
+    echo "run this:"
+    echo "sudo rm -f /usr/bin/CuraEngine; sudo ln -s ${CURAENGINE} /usr/bin"
+    exit 1
+fi
+
+cura

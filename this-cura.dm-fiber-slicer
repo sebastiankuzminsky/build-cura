@@ -1,0 +1,24 @@
+#!/bin/bash
+set -x
+set -e
+
+echo "installing dm-fiber-slicer's CuraEngine and resources..."
+
+TOPLEVEL=$(git rev-parse --show-toplevel)
+
+CURAENGINE=$(realpath "${TOPLEVEL}/gcode-generator/centos/CuraEngine")
+if [[ $(realpath /usr/bin/CuraEngine) != "${CURAENGINE}" ]]; then
+    echo "wrong /usr/bin/CuraEngine!"
+    echo "it currently points to $(realpath /usr/bin/CuraEngine)"
+    echo "run this:"
+    echo "sudo rm -f /usr/bin/CuraEngine; sudo ln -s ${CURAENGINE} /usr/bin"
+    exit 1
+fi
+
+echo "copying resources to /usr/share/cura/resources..."
+RESOURCES=$(realpath "${TOPLEVEL}/gcode-generator/common")
+sudo /bin/cp -af ${RESOURCES}/fdm*.def.json        /usr/share/cura/resources/definitions
+sudo /bin/cp -af ${RESOURCES}/mcprinter*.def.json  /usr/share/cura/resources/definitions
+sudo /bin/cp -af ${RESOURCES}/mcextruder*.def.json /usr/share/cura/resources/extruders
+
+cura
